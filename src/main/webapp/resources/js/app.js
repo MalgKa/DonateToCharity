@@ -164,11 +164,71 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
-    }
 
+      function getElement(el) {
+        return document.querySelector(el)
+      }
+
+      const categoryList = [];
+      const street = getElement('#street')
+      const city = getElement('#city')
+      const zipCode = getElement('#zipCode')
+      const phone = getElement('#phone')
+      const pickUpDate = getElement('#pickUpDate')
+      const pickUpTime = getElement('#pickUpTime')
+      const pickUpComment = getElement('#pickUpComment')
+      const deliveryData = [street, city, zipCode, phone, pickUpDate, pickUpTime, pickUpComment]
+
+      const summaryQuantity = getElement('#quantity').value
+      const summaryCategories = getElement('.summary-category');
+      const summaryInstitution = getElement('.summary-institution');
+      const categories = document.querySelectorAll('#category:checked');
+      let bagText = ''
+      if (summaryQuantity === 1) {
+        bagText = 'worek'
+      } else if (summaryQuantity > 1 && summaryQuantity <= 4) {
+        bagText = 'worki'
+      } else {
+        bagText = 'worków'
+      }
+      categories.forEach(el => {
+        categoryList.push(el.nextElementSibling.nextElementSibling.textContent);
+        summaryCategories.textContent = summaryQuantity + " " + bagText + ", w tym: " + categoryList;
+      });
+      const radioInput = getElement('#institution:checked')
+      if (radioInput) {
+        summaryInstitution.textContent = radioInput.closest('label').querySelector('.title').textContent
+      }
+      const pickUpDetails = document.querySelectorAll('.pickUpDetails')
+      for (let i = 0; i < pickUpDetails.length; i++) {
+        pickUpDetails[i].textContent = deliveryData[i].value
+      }
+    }
   }
+
   const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);
   }
+
+  //** scrollSpy
+  let section = document.querySelectorAll('section');
+  let navLinks = document.querySelectorAll('header nav ul li a');
+  window.onscroll = () => {
+    section.forEach(sec => {
+      let top = window.scrollY;
+      let offset = sec.offsetTop - 40;
+      let height = sec.offsetHeight;
+      let id = sec.getAttribute('id')
+
+      if (top >= offset && top < offset + height) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          document.querySelector('header nav ul li a[href*=' + id + ']').classList.add('active')
+        })
+      }
+
+    })
+  }
+
 });

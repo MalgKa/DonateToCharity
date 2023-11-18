@@ -1,4 +1,4 @@
-package pl.coderslab.charity.controller.entity;
+package pl.coderslab.charity.entity;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

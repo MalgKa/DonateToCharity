@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8"/>
@@ -15,10 +14,10 @@
 <body>
 <jsp:include page="header.jsp"/>
 
-<section class="stats">
+<section class="stats" id="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>13</em>
+            <em>${numberOfBags}</em>
 
             <h3>Oddanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
@@ -26,7 +25,7 @@
         </div>
 
         <div class="stats--item">
-            <em>5</em>
+            <em>${numberOfDonations}</em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
@@ -35,7 +34,7 @@
     </div>
 </section>
 
-<section class="steps">
+<section class="steps" id="steps">
     <h2>Wystarczą 4 proste kroki</h2>
 
     <div class="steps--container">
@@ -64,7 +63,7 @@
     <a href="#" class="btn btn--large">Załóż konto</a>
 </section>
 
-<section class="about-us">
+<section class="about-us" id="about-us">
     <div class="about-us--text">
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
@@ -75,7 +74,7 @@
     </div>
 </section>
 
-<section class="help">
+<section class="help" id="help">
     <h2>Komu pomagamy?</h2>
 
     <!-- SLIDE 1 -->
