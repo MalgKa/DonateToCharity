@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html lang="pl">
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<html>
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,9 +12,20 @@
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<header class="header--main-page">
+    <jsp:include page="header.jsp"/>
 
-<section class="stats" id="stats">
+    <div class="slogan container container--90">
+        <div class="slogan--item">
+            <h1>
+                Zacznij pomagać!<br />
+                Oddaj niechciane rzeczy w zaufane ręce
+            </h1>
+        </div>
+    </div>
+</header>
+
+<section class="stats">
     <div class="container container--85">
         <div class="stats--item">
             <em>${numberOfBags}</em>
@@ -34,7 +45,7 @@
     </div>
 </section>
 
-<section class="steps" id="steps">
+<section id="steps" class="steps">
     <h2>Wystarczą 4 proste kroki</h2>
 
     <div class="steps--container">
@@ -60,7 +71,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section class="about-us" id="about-us">
@@ -88,30 +99,18 @@
                     <li>
                 </c:if>
                 <div class="col">
-                    <div class="title">Fundacja ${institution.name}</div>
+                    <div class="title">Fundacja "${institution.name}"</div>
                     <div class="subtitle">Cel i misja: ${institution.description}</div>
                 </div>
-                <c:if test="${status.count % 2 ==0 or status.last}">
+                <c:if test="${status.count % 2 == 0 or status.last}">
                     </li>
                 </c:if>
             </c:forEach>
-            <%--            <li>--%>
-            <%--                <div class="col">--%>
-            <%--                    <div class="title">Fundacja "Dbam o Zdrowie"</div>--%>
-            <%--                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>--%>
-            <%--                </div>--%>
-
-            <%--                <div class="col">--%>
-            <%--                    <div class="title">Fundacja "A kogo"</div>--%>
-            <%--                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>--%>
-            <%--                </div>--%>
-            <%--            </li>--%>
         </ul>
     </div>
 </section>
 
 <jsp:include page="footer.jsp"/>
-
 
 <script src="<c:url value="resources/js/app.js"/>"></script>
 </body>

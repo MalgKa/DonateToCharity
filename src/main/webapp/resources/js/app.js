@@ -184,7 +184,8 @@ document.addEventListener("DOMContentLoaded", function() {
       const summaryInstitution = getElement('.summary-institution');
       const categories = document.querySelectorAll('#category:checked');
       let bagText = ''
-      if (summaryQuantity === 1) {
+      // console.log(typeof summaryQuantity)
+      if (summaryQuantity === "1") {
         bagText = 'worek'
       } else if (summaryQuantity > 1 && summaryQuantity <= 4) {
         bagText = 'worki'
