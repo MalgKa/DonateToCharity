@@ -13,7 +13,7 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http.authorizeRequests()
-                .antMatchers("/", "/login", "/register/**", "/form").permitAll()
+                .antMatchers("/", "/login", "/register/**", "/form", "/activate/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
