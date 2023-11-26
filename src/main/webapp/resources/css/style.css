@@ -1935,7 +1935,7 @@ tr:nth-child(odd) {
   width: 60vw;
 }
 
-.card-institution, .card-admin {
+.card-institution, .card-admin, .card-donation {
   min-width: 440px;
   min-height: 600px;
   background-color: white;
@@ -1979,4 +1979,15 @@ tr:nth-child(odd) {
 
 .container--20 {
   width: 20vw;
+}
+
+.container--90{
+  width: 90vw;
+}
+.donation-list{
+  margin-top: 60px;
+  padding-inline:20px
+}
+.card-donation{
+  opacity: 90%;
 }
