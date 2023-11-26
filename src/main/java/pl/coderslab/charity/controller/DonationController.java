@@ -16,13 +16,12 @@ import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class DonationController {
-
     private final CategoryRepository categoryRepository;
     private final InstitutionRepository institutionRepository;
-
     private final DonationRepository donationRepository;
     private final UserRepository userRepository;
 
@@ -32,7 +31,6 @@ public class DonationController {
         this.donationRepository = donationRepository;
         this.userRepository = userRepository;
     }
-
     @GetMapping("/form")
     public String form(@AuthenticationPrincipal UserDetails authenticatedUser, Model model) {
         List<Category> categories = categoryRepository.findAll();
@@ -47,7 +45,6 @@ public class DonationController {
         }
         return "form";
     }
-
     @PostMapping("/form")
     public String confirmForm(@AuthenticationPrincipal UserDetails authenticatedUser, Donation donation, Model model) {
         donationRepository.save(donation);
@@ -58,5 +55,12 @@ public class DonationController {
             model.addAttribute("loggedUser", userRepository.getByUsername(authenticatedUser.getUsername()));
         }
         return "form-confirmation";
+    }
+    @GetMapping("/donations")
+    public String donationList(@AuthenticationPrincipal UserDetails authenticatedUser, Model model){
+        User user = userRepository.getByUsername(authenticatedUser.getUsername());
+        Set<Donation> donationList = user.getUserDonations();
+        model.addAttribute("donationList", donationList);
+        return "donation-list";
     }
 }

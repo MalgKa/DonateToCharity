@@ -12,7 +12,7 @@
         </ul>
 
         <ul>
-            <li><a href="" class="btn btn--without-border active">Start</a></li>
+            <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
             <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
             <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
@@ -21,6 +21,7 @@
         </ul>
     </nav>
 </sec:authorize>
+
 <sec:authorize access="isAuthenticated()">
 
     <nav class="container container--70">
@@ -29,14 +30,17 @@
                 Witaj ${loggedUser.firstName}
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
+                    <li><a href="/donations">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li><a href="/admin/users">panel admina</a></li>
+                    </sec:authorize>
                 </ul>
             </li>
         </ul>
 
         <ul>
-            <li><a href="" class="btn btn--without-border active">Start</a></li>
+            <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
             <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
             <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>

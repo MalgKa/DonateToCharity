@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -20,7 +22,16 @@ public class SecurityConfig {
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
-
+                .successHandler((request, response, authentication) -> {
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    for (GrantedAuthority auth : authentication.getAuthorities()) {
+                        if (auth.getAuthority().equals("ROLE_USER")) {
+                            response.sendRedirect("/");
+                        } else if (auth.getAuthority().equals("ROLE_ADMIN")) {
+                            response.sendRedirect("/admin/users");
+                        }
+                    }
+                })
                 .permitAll()
                 .and()
                 .logout()
