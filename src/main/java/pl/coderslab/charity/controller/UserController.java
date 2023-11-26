@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class UserController {
     private final UserRepository userRepository;
-
+    private final PasswordEncoder passwordEncoder;
     private final EmailSenderService emailSenderService;
 
-    public UserController(UserRepository userRepository, EmailSenderService emailSenderService) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, EmailSenderService emailSenderService) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
         this.emailSenderService = emailSenderService;
     }
 
@@ -27,10 +29,12 @@ public class UserController {
         model.addAttribute("user", new User());
         return "register";
     }
+
     @PostMapping("/register")
-    public String register(User user, HttpServletRequest request){
+    public String register(User user, HttpServletRequest request) {
         user.setActive(false);
         user.setRole("ROLE_USER");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 
         String activationLink = getAppUrl(request) + "/activate?username=" + user.getUsername();
@@ -39,6 +43,7 @@ public class UserController {
 
         return "redirect:/login";
     }
+
     @GetMapping("/activate")
     public String activateAccount(@RequestParam String username) {
         User user = userRepository.getByUsername(username);
@@ -50,6 +55,7 @@ public class UserController {
             return "errorAccount";
         }
     }
+
     private String getAppUrl(HttpServletRequest request) {
         return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     }

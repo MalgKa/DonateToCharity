@@ -2,6 +2,7 @@ package pl.coderslab.charity.controller;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,16 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
     private final InstitutionRepository institutionRepository;
 
     private final DonationRepository donationRepository;
 
-    public AdminController(UserRepository userRepository, InstitutionRepository institutionRepository, DonationRepository donationRepository) {
+
+
+    public AdminController(UserRepository userRepository, PasswordEncoder passwordEncoder, InstitutionRepository institutionRepository, DonationRepository donationRepository) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
         this.institutionRepository = institutionRepository;
         this.donationRepository = donationRepository;
     }
@@ -78,6 +83,7 @@ public class AdminController {
 
     @PostMapping("admin/add")
     public String addAdmin(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/admin/users";
     }
