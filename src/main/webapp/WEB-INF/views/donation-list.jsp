@@ -16,6 +16,9 @@
     <div class="slogan container container--90">
         <div class="card-donation">
             <h2>lista Twoich donacji</h2>
+            <c:if test="${empty donationList}">
+                <p style="color: brown; font-size: 20px; font-weight: bold ">Nie masz jeszcze donacji.</p>
+            </c:if>
             <div class="donation-list">
                 <table cellspacing="10">
                     <tr>
@@ -28,7 +31,6 @@
                         <th>kod pocztowy</th>
                         <th>wiadomosc dla kuriera</th>
                     </tr>
-
                     <c:forEach items="${donationList}" var="donation">
                         <tr>
                             <td>${donation.institution.name ne null ? donation.institution.name:  "instytucja usunięta z bazy " }</td>

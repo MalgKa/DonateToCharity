@@ -2,6 +2,8 @@ package pl.coderslab.charity.controller;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +41,7 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    public String showAll(Model model, @RequestParam(required = false) Long userToEditId) {
+    public String showAll(@AuthenticationPrincipal UserDetails authenticatedUser, Model model, @RequestParam(required = false) Long userToEditId) {
         if (userToEditId != null) {
             User userToEdit = userRepository.getById(userToEditId);
             model.addAttribute("userToEdit", userToEdit);
@@ -49,8 +51,10 @@ public class AdminController {
         allUsers.stream()
                 .forEach(user -> mapOfUsers.put(user.getRole(), user));
         List<Institution> institutionList = institutionRepository.findAll();
+        User loggedUser = userRepository.getByUsername(authenticatedUser.getUsername());
         model.addAttribute("institutionList", institutionList);
         model.addAttribute("mapOfUsers", mapOfUsers);
+        model.addAttribute("loggedUser", loggedUser);
         return "admin-panel";
     }
 
@@ -67,7 +71,7 @@ public class AdminController {
         User userToRemove = userRepository.getById(userId);
         String loggedUser = principal.getName();
         if (userToRemove.getUsername().equals(loggedUser)) {
-            redirectAttributes.addFlashAttribute ("error", "Nie można usunąć samego siebie !!!");
+            redirectAttributes.addFlashAttribute ("error", "Nie można usunąć profilu, na którym jesteś zalogowany");
         } else {
             userRepository.delete(userToRemove);
         }
