@@ -1991,3 +1991,9 @@ tr:nth-child(odd) {
 .card-donation{
   opacity: 90%;
 }
+.language{
+  display: flex;
+  gap: 12px;
+  font-size: 1.6rem;
+  padding-top: 8px;
+}
