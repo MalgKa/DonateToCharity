@@ -14,53 +14,40 @@
 </head>
 <body>
 <header class="header--admin-page">
-    <nav class="container container--70">
-        <ul class="nav--actions">
-            <li class="logged-user">
-                Witaj ${loggedUser.firstName}
-                <ul class="dropdown">
-                    <li><a href="/update/profile"><spring:message code="logged.user.dropdown.profile"/></a></li>
-                    <li><a href="/donations"><spring:message code="logged.user.dropdown.donationList"/></a></li>
-                    <li><a href="/logout"><spring:message code="logged.user.dropdown.logout"/></a></li>
-                    <li><a href="/admin/users"><spring:message code="logged.user.dropdown.adminPanel"/></a></li>
-                </ul>
-            </li>
-        </ul>
+    <jsp:include page="header.jsp"/>
 
-        <ul>
-            <li><a href="/#steps" class="btn btn--without-border active">O co chodzi?</a></li>
-            <li><a href="/admin/users#users" class="btn btn--without-border">użytkownicy</a></li>
-            <li><a href="/admin/users#help" class="btn btn--without-border">lista fundacji</a></li>
-            <li><a href="/form" class="btn btn--without-border">Przekaż dary</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
-        </ul>
-    </nav>
     <section class="about-us" id="users">
         <div class="about-us--text div-admin">
             <div class="slogan container container--20">
                 <div class="card-admin">
-                    <h2>dodaj admina</h2>
-                    <form:form modelAttribute="admin" method="post" class="form-admin">
+                    <h2>Twoje dane</h2>
+                    <form:form modelAttribute="loggedUser" method="post" class="form-admin">
                         <div class="form-box">
                             <label>Imię</label>
-                            <form:input path="firstName" placeholder="imię"/>
+                            <form:input path="firstName" readonly="true"/>
                         </div>
                         <div class="form-box">
                             <label>Nazwisko</label>
-                            <form:input path="lastName" placeholder="nazwisko"/>
+                            <form:input path="lastName" readonly="true"/>
                         </div>
                         <div class="form-box">
                             <label>Email</label>
-                            <form:input path="username" placeholder="email"/>
+                            <form:input path="username" readonly="true"/>
                         </div>
                         <div class="form-box">
-                            <label>Password</label>
-                            <form:input path="password" type="password" placeholder="password"/>
+                            <label>change password</label>
+                            <input type="text" name="newPassword">
+                            <c:if test="${not empty error}">
+                                <p style="color: red;">${error}</p>
+                            </c:if>
                         </div>
-                        <form:hidden path="active" value="true"/>
-                        <form:hidden path="role" value="ROLE_ADMIN"/>
+
+                        <form:hidden path="active"/>
+                        <form:hidden path="role"/>
+                        <form:hidden path="id"/>
                         <div class="form-box">
                             <form:button>zapisz</form:button>
+                            <a href="/update/profile" class="custom-btn update">anuluj</a>
                         </div>
                     </form:form>
                 </div>
@@ -71,5 +58,6 @@
         </div>
     </section>
 </header>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

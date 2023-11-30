@@ -19,7 +19,10 @@
             <li class="logged-user">
                 Witaj ${loggedUser.firstName}
                 <ul class="dropdown">
-                    <li><a href="/logout">Wyloguj</a></li>
+                    <li><a href="/update/profile"><spring:message code="logged.user.dropdown.profile"/></a></li>
+                    <li><a href="/donations"><spring:message code="logged.user.dropdown.donationList"/></a></li>
+                    <li><a href="/logout"><spring:message code="logged.user.dropdown.logout"/></a></li>
+                    <li><a href="/admin/users"><spring:message code="logged.user.dropdown.adminPanel"/></a></li>
                 </ul>
             </li>
         </ul>

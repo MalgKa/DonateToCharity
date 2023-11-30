@@ -20,24 +20,24 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-                Oddaj rzeczy, których już nie chcesz<br />
-                <span class="uppercase">potrzebującym</span>
+                <spring:message code="form.slogan1/2"/><br />
+                <span class="uppercase"><spring:message code="form.slogan2/2"/></span>
             </h1>
 
             <div class="slogan--steps">
-                <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
+                <div class="slogan--steps-title"><spring:message code="homePage.slogan.steps"/></div>
                 <ul class="slogan--steps-boxes">
                     <li>
-                        <div><em>1</em><span>Wybierz rzeczy</span></div>
+                        <div><em>1</em><span><spring:message code="homePage.slogan.steps1/1"/></span></div>
                     </li>
                     <li>
-                        <div><em>2</em><span>Spakuj je w worki</span></div>
+                        <div><em>2</em><span><spring:message code="homePage.logged.step2"/></span></div>
                     </li>
                     <li>
-                        <div><em>3</em><span>Wybierz fundację</span></div>
+                        <div><em>3</em><span><spring:message code="homePage.logged.step3"/></span></div>
                     </li>
                     <li>
-                        <div><em>4</em><span>Zamów kuriera</span></div>
+                        <div><em>4</em><span><spring:message code="homePage.slogan.steps4/1"/></span></div>
                     </li>
                 </ul>
             </div>
@@ -48,30 +48,27 @@
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
-            <h3>Ważne!</h3>
+            <h3><spring:message code="form.donation.add.slogan.important1"/>!</h3>
             <p data-step="1">
-                Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu będziemy
-                wiedzieć komu najlepiej je przekazać.
+                <spring:message code="form.donation.add.slogan.important2"/>
             </p>
             <p data-step="2">
-                Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu będziemy
-                wiedzieć komu najlepiej je przekazać.
+                <spring:message code="form.donation.add.slogan.important2"/>
             </p>
             <p data-step="3">
-                Wybierz jedną, do
-                której trafi Twoja przesyłka.
+                <spring:message code="form.donation.add.slogan.step3"/>
             </p>
-            <p data-step="4">Podaj adres oraz termin odbioru rzeczy.</p>
+            <p data-step="4"><spring:message code="form.donation.add.slogan.step4"/></p>
         </div>
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter">Krok <span>1</span>/4</div>
+        <div class="form--steps-counter"><spring:message code="form.donation.add.slogan.step"/><span>1</span>/4</div>
 
         <form:form modelAttribute="donation" method="post">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1">
-                <h3>Zaznacz co chcesz oddać:</h3>
+                <h3><spring:message code="form.donation.add.stuff"/></h3>
                 <c:forEach items="${categories}" var="category">
                     <div class="form-group form-group--checkbox">
                         <label>
@@ -100,24 +97,24 @@
 
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step"><spring:message code="form.donation.add.btnNext"/></button>
                 </div>
             </div>
 
             <!-- STEP 2 -->
             <div data-step="2" class="active">
-                <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
+                <h3><spring:message code="form.donation.add.numberOfBags"/></h3>
 
                 <div class="form-group form-group--inline">
                     <label>
-                        Liczba 60l worków:
+                        <spring:message code="form.donation.add.numberOfBagsInput"/>
                         <form:input type="number" path="quantity" step="1" min="1" id="quantity"/>
                     </label>
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn prev-step"><spring:message code="form.donation.add.btnPrevious"/></button>
+                    <button type="button" class="btn next-step"><spring:message code="form.donation.add.btnNext"/></button>
                 </div>
             </div>
 
@@ -126,7 +123,7 @@
 
             <!-- STEP 3 -->
             <div data-step="3">
-                <h3>Wybierz organizację, której chcesz pomóc:</h3>
+                <h3><spring:message code="form.donation.add.institution"/></h3>
 
                 <div class="form-group form-group--checkbox">
                     <c:forEach items="${institutions}" var="institution">
@@ -143,70 +140,70 @@
                     </c:forEach>
                 </div>
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn prev-step"><spring:message code="form.donation.add.btnPrevious"/></button>
+                    <button type="button" class="btn next-step"><spring:message code="form.donation.add.btnNext"/></button>
                 </div>
             </div>
 
             <!-- STEP 4 -->
             <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                <h3><spring:message code="form.donation.add.pickUpData"/></h3>
 
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
-                        <h4>Adres odbioru</h4>
+                        <h4><spring:message code="form.donation.add.pickUpAddress"/></h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <form:input type="text" path="street" id="street"/> </label>
+                            <label> <spring:message code="form.donation.add.pickUpStreet"/><form:input type="text" path="street" id="street"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <form:input type="text" path="city" id="city"/> </label>
+                            <label><spring:message code="form.donation.add.pickUpCity"/><form:input type="text" path="city" id="city"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input type="text" path="zipCode" id="zipCode"/>
+                                <spring:message code="form.donation.add.pickUpZipcode"/><form:input type="text" path="zipCode" id="zipCode"/>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <input type="phone" name="phone" id="phone"/>
+                                <spring:message code="form.donation.add.pickUpPhonenumber"/><input type="phone" name="phone" id="phone"/>
                             </label>
                         </div>
                     </div>
 
                     <div class="form-section--column">
-                        <h4>Termin odbioru</h4>
+                        <h4><spring:message code="form.donation.add.pickUpDate"/></h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input type="date" path="pickUpDate" id="pickUpDate"/> </label>
+                            <label> <spring:message code="form.donation.add.pickUpDay"/> <form:input type="date" path="pickUpDate" id="pickUpDate"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input type="time" path="pickUpTime" id="pickUpTime"/> </label>
+                            <label> <spring:message code="form.donation.add.pickUpTime"/> <form:input type="time" path="pickUpTime" id="pickUpTime"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Uwagi dla kuriera
+                                <spring:message code="form.donation.add.pickUpMessage"/>
                                 <form:textarea path="pickUpComment" id="pickUpComment" rows="5"/>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn prev-step"><spring:message code="form.donation.add.btnPrevious"/></button>
+                    <button type="button" class="btn next-step"><spring:message code="form.donation.add.btnNext"/></button>
                 </div>
             </div>
 
             <!-- STEP 6 -->
             <div data-step="5">
-                <h3>Podsumowanie Twojej darowizny</h3>
+                <h3><spring:message code="form.donation.add.mainSummary"/></h3>
 
                 <div class="summary">
                     <div class="form-section">
-                        <h4>Oddajesz:</h4>
+                        <h4><spring:message code="form.donation.add.summary"/></h4>
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
@@ -226,7 +223,7 @@
 
                     <div class="form-section form-section--columns">
                         <div class="form-section--column">
-                            <h4>Adres odbioru:</h4>
+                            <h4><spring:message code="form.donation.add.pickUpAddress"/></h4>
                             <ul>
                                 <li class="pickUpDetails">Prosta 51</li>
                                 <li class="pickUpDetails">Warszawa</li>
@@ -236,7 +233,7 @@
                         </div>
 
                         <div class="form-section--column">
-                            <h4>Termin odbioru:</h4>
+                            <h4><spring:message code="form.donation.add.pickUpDate"/></h4>
                             <ul>
                                 <li class="pickUpDetails">13/12/2018</li>
                                 <li class="pickUpDetails">15:40</li>
@@ -247,8 +244,8 @@
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <form:button type="submit" class="btn">Potwierdzam</form:button>
+                    <button type="button" class="btn prev-step"><spring:message code="form.donation.add.btnPrevious"/></button>
+                    <form:button type="submit" class="btn"><spring:message code="form.donation.add.btnConfirm"/></form:button>
                 </div>
             </div>
         </form:form>

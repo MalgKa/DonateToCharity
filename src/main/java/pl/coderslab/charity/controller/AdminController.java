@@ -28,10 +28,7 @@ public class AdminController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final InstitutionRepository institutionRepository;
-
     private final DonationRepository donationRepository;
-
-
 
     public AdminController(UserRepository userRepository, PasswordEncoder passwordEncoder, InstitutionRepository institutionRepository, DonationRepository donationRepository) {
         this.userRepository = userRepository;
@@ -63,8 +60,6 @@ public class AdminController {
         userRepository.save(user);
         return "redirect:/admin/users";
     }
-
-
 
     @GetMapping("/user/remove")
     public String remove(@RequestParam Long userId, Principal principal, RedirectAttributes redirectAttributes) {
@@ -110,7 +105,6 @@ public class AdminController {
     public String institutionRemove(@RequestParam Long institutionId) {
         Institution institutionToDelete = institutionRepository.getById(institutionId);
         List<Donation> donationsToDelete = donationRepository.findByInstitution(institutionToDelete);
-
         for (Donation donation : donationsToDelete) {
             donation.setInstitution(null);
         }

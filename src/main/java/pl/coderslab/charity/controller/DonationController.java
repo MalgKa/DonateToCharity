@@ -59,8 +59,7 @@ public class DonationController {
     @GetMapping("/donations")
     public String donationList(@AuthenticationPrincipal UserDetails authenticatedUser, Model model){
         User user = userRepository.getByUsername(authenticatedUser.getUsername());
-//        Set<Donation> donationList = user.getUserDonations();
-        List<Donation>donationList=donationRepository.findAllByUserIdOrderByPickupDate(user.getId());
+        Set<Donation>donationList=donationRepository.findAllByUserIdOrderByPickupDate(user.getId());
         model.addAttribute("donationList", donationList);
         model.addAttribute("loggedUser", user);
         return "donation-list";

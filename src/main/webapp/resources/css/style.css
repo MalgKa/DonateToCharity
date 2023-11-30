@@ -1997,3 +1997,20 @@ tr:nth-child(odd) {
   font-size: 1.6rem;
   padding-top: 8px;
 }
+.language .btn{
+  padding: 2px;
+  font-weight: bold;
+  color: black;
+  font-size: 1.2rem;
+}
+
+.btn-en{
+  background-image:linear-gradient(312deg, rgba(255,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(0,44,255,1) 100%);
+}
+.btn-de{
+  background-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,0,0,1) 50%, rgba(254,255,0,1) 100%);
+}
+
+.btn-pl{
+  background-image:linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,0,0,1) 100%);
+}
